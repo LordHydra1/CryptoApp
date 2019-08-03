@@ -13,7 +13,7 @@ export default StyleSheet.create({
         backgroundColor: '#E7E7E8'
     },
     greenText: {
-        color: "#2FA09E",
+        color: '#3D9400',
     },
     redText: {
         color: "#FB0F03"

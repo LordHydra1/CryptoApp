@@ -56,61 +56,57 @@ class ViewComponent extends React.Component {
 
         if (item.DISPLAY.USD.CHANGEPCT24HOUR < 0) {
             return (
-                <View style={{ flex: 1, marginTop: 20, flexDirection: 'row' }}>
-                    <View>
+                <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginTop: 25, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'column', flex: 0.2 }}>
                         <Text>{item.CoinInfo.FullName}</Text>
-                    </View>
-                    <View>
                         <Image
-                            style={{ width: 40, height: 40, marginHorizontal: 15, }}
-                            source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}></Image>
+                            style={{ width: 40, height: 40 }}
+                            source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
+                        </Image>
                     </View>
-                    <View>
+                    <View style={{ flexDirection: 'column', flex: 0.5 }}>
                         <Text
-                            style={styles.text}>
+                            style={[styles.text, styles.negativeRate, { textAlign: 'center' }]}>
                             {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
                         </Text>
                     </View>
-                    <View>
-                        <Text style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
-                            {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%'}
-                        </Text>
-                    </View>
-                    <View>
-                        <Image style={{ width: 20, height: 20, transform: [{ rotate: '180deg' }], marginTop: 10 }} source={arrowdown}>
-                        </Image>
+                    <View style={{ flexDirection: 'column', flex: 0.2, justifyContent: 'flex-start' }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText]}>
+                                {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%'}
+                            </Text>
+                            <Image style={{ width: 15, height: 15, transform: [{ rotate: '180deg' }], marginTop: 35 }} source={arrowdown}>
+                            </Image>
+                        </View>
                     </View>
                 </View>
-
             )
 
         }
         else {
             return (
-                <View style={{ flex: 1, marginTop: 20, flexDirection: 'row'}}>
-                       <View>
+                <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginTop: 25, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flexDirection: 'column', flex: 0.2}}>
                         <Text>{item.CoinInfo.FullName}</Text>
-                    </View>
-                    <View >
-                    <Image
-                        style={{ width: 40, height: 40, marginHorizontal: 15, }}
-                        source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
-                    </Image>
-                    </View>
-                   <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                   <Text style={styles.text}>
-                        {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
-                    </Text>
-                   </View>
-                    <View >
-                    <Text
-                        style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
-                        {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%' + " "}
-                    </Text>
-                    </View>
-                    <View>
-                        <Image style={{ width: 20, height: 20, marginTop: 10 }} source={arrowtop} >
+                        <Image
+                            style={{ width: 40, height: 40 }}
+                            source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
                         </Image>
+                    </View>
+                    <View style={{ flexDirection: 'column', flex: 0.6}}>
+                        <Text style={[styles.text, styles.positiveRate]}>
+                            {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                        </Text>
+                    </View>
+                    <View style={{ flexDirection: 'column', flex: 0.2, justifyContent: 'flex-start'}}>
+                        <View style={{ flexDirection: 'row', marginRight:10 }}>
+                            <Text
+                                style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText]}>
+                                {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%' + " "}
+                            </Text>
+                            <Image style={{ width: 15, height: 15, marginTop: 30, right:3}} source={arrowtop} >
+                            </Image>
+                        </View>
                     </View>
                 </View>
             )
@@ -141,24 +137,35 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     text: {
-        color: '#fff',
+        color: '#3D9400',
         fontSize: 30,
         fontWeight: 'bold',
         letterSpacing: 1,
-        width: 190,
-        textAlign: 'center'
+        marginTop: 20
 
     },
     redText: {
         color: "#FB0F03",
-        marginLeft: 20,
-        marginTop: 10
+        marginTop: 30
     },
     greenText: {
         color: 'green',
-        marginLeft: 20,
-        marginTop: 10
+        marginTop: 30
+    },
+    positiveRate: {
+        color: '#3D9400',
+        fontSize: 30,
+        fontWeight: 'bold',
+        letterSpacing: 1,
+        textAlign:'center'
+    },
+    negativeRate: {
+        color: '#A11B0A',
+        fontSize: 30,
+        fontWeight: 'bold',
+        letterSpacing: 1
     }
+
 })
 
 
