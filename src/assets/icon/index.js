@@ -1,3 +1,4 @@
 import React from 'react';
 
-export const toparrow = require('./toparrow.png'); 
+export const arrowtop = require('./arrowtop.png');
+export const arrowdown = require('./arrowdown.png')

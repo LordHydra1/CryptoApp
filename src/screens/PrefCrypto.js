@@ -4,6 +4,7 @@ import { _fetchAll } from '../api/fetchSomething';
 import styles from '../utils/styles'
 import Swiper from '../components/Swiper'
 import accounting from 'accounting'
+import arrowtop from '../assets/icon/index'
 
 
 export default class PrefCrypto extends React.Component {
@@ -13,41 +14,53 @@ export default class PrefCrypto extends React.Component {
     this.props = props;
     this.state = {
       isLoading: true,
-      fullCrypto: [],
-      
+      fullCrypto: [{}],
+
     }
   }
   componentDidMount() {
     _fetchAll().then((responseJson) => {
       this.setState({
         isLoading: false,
-        fullCrypto: Object.values(responseJson.Data)
-      }, function () {})
+        fullCrypto: responseJson.Data
+      }, function () { })
     })
   }
 
 
-  renderItem = ({ items, index }) => {
-    console.log('pippo',this.state.fullCrypto)
+  renderItem = ({ item, index }) => {
+    console.log('pippo', item.DISPLAY)
+
+
     return (
-      items.map((item, index) => {
+
       <TouchableOpacity>
         <View style={styles.cardView}>
           <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <Image  style={{ width: 30, height: 30, borderRadius: 55, marginLeft: 20 }} source={{ uri: 'https://www.cryptocompare.com' + item.DYSPLAY.USD.IMAGEURL }}></Image>
+            <View>
+     
+              <Text style={{ top: -10, marginLeft: 10, fontSize: 17, fontWeight: '600' }}>{item.CoinInfo.FullName}</Text>
+              <Image style={{ width: 30, height: 30, borderRadius: 55, marginLeft: 11 }} source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}></Image>
+            </View>
           </View>
-          <View style={styles.insideCardView}>
-            <Text  style={{ fontWeight: 'bold', fontSize: 15, letterSpacing: 1.3 }}>{accounting.formatMoney(item.USD.PRICE, "$", 2, ".", ",")}</Text>
-            <Text   style={{ fontWeight: '300', fontSize: 15 }}>{item.USD.LASTVOLUME}</Text>
+          {/* <View style={{flex:1}}>
+           <AreaChart
+            randomprop={this.state.crypto}/> 
+          </View> */}
+          <View style={{ flexDirection: 'column', flex: 1}}>
+            <View style={{flexDirection: 'row'}}>
+            <Text style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
+                {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%'}
+              </Text>
+            
+              <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1.3, textAlign: 'right', marginTop: 5, marginRight: 8 }}>{accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}</Text>
+            </View>
+            <Text style={{ textAlign: 'right' }}>{item.DISPLAY.USD.HIGHDAY}</Text>
+            <Text style={{ textAlign: 'right' }}>{item.DISPLAY.USD.LOWDAY}</Text>
           </View>
-          <View style={{flex:1}}>
-            {/* <AreaChart
-            randomprop={this.state.crypto}/> */}
-          </View>
-          <Text  style={[item.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText,  styles.rateText ]}>{(item.USD.CHANGEPCT24HOUR < 0 ? item.USD.CHANGEPCT24HOUR:'+'+item.USD.CHANGEPCT24HOUR) + '%'}</Text>
         </View>
       </TouchableOpacity>
-      })
+
     )
   }
 
@@ -63,7 +76,10 @@ export default class PrefCrypto extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.HomeView}>
-        <View style={{flex:1}}>
+          <View style={{ flex: 1 }}>
+            <Swiper
+              randomprop={this.state.fullCrypto}
+            />
           </View>
         </View>
         <FlatList
@@ -128,8 +144,8 @@ export default class PrefCrypto extends React.Component {
 //               <Text>{data.USD.PRICE}</Text>
 //          </View>
 //        }
-         
-          
+
+
 //         )
 //       }
 // }

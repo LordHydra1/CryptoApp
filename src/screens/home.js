@@ -72,9 +72,9 @@ export default class Home extends React.Component {
       <View style={styles.container}>
         <View style={styles.HomeView}>
         <View style={{flex:1}}>
-         <Swiper
+         {/* <Swiper
           randomprop={this.state.crypto}
-         />
+         /> */}
           </View>
         </View>
         <FlatList

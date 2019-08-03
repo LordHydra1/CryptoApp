@@ -5,8 +5,8 @@ export default StyleSheet.create({
     },
 
     HomeView: {
-        flex: 0.8,
-        backgroundColor: '#4B55A9'
+        flex: 0.5,
+        backgroundColor: '#E7E7E8'
     },
     FlatList: {
         flex: 0.2,
@@ -23,12 +23,13 @@ export default StyleSheet.create({
         fontWeight: '300',
         fontSize: 15,
         marginLeft: 'auto',
-        textAlign: 'left',
-        marginHorizontal: 10,
-        marginVertical: 37
+        textAlign: 'right',
+        marginTop: 10, 
+        marginRight: 10
     },
     cardView: {
         borderWidth: 1,
+        flex:1,
         borderColor: 'white',
         marginVertical: 5,
         marginHorizontal: 10,
@@ -46,10 +47,5 @@ export default StyleSheet.create({
 
         elevation: 1,
     },
-    insideCardView:{
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        flexDirection: 'column', 
-        marginLeft: 15 
-    }
+  
 })

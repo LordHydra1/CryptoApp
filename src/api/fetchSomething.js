@@ -21,7 +21,7 @@ export async function _getMovies() {
 
 
   export async function _fetchCrypto() {
-    return fetch ('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD')
+    return fetch ('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC,EOS,BCH,XRP,BGG &tsyms=USD')
     .then((response) => response.json())
     .catch ((error) => {console.error(error)})
   }

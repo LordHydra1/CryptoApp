@@ -4,8 +4,8 @@ import Swiper from 'react-native-swiper'
 import { _fetchCrypto } from '../api/fetchSomething'
 import LinearGradient from 'react-native-linear-gradient';
 import accounting from 'accounting'
-import {toparrow} from '../assets/icon/index'
-
+import { arrowtop, arrowdown } from '../assets/icon/index'
+import stylesa from '../utils/styles'
 
 
 export default class SwiperComponent extends Component {
@@ -24,13 +24,10 @@ export default class SwiperComponent extends Component {
     componentDidMount() {
     }
 
-
     render() {
         console.log('props', this.props.randomprop);
-
-        //   return this.props.randomprop.map((index) => {
         return (
-            <LinearGradient colors={['#5c258d', '#4389a2']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}>
+            <LinearGradient colors={['#ffffff', '#f6f6f6', '#ededed']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1, marginVertical: 10, marginHorizontal: 10, borderRadius: 10 }}>
                 <Swiper style={styles.wrapper}
                     showsButtons={false}
                     randomprop={this.props.randomprop}
@@ -45,8 +42,6 @@ export default class SwiperComponent extends Component {
                 </Swiper>
             </LinearGradient>
         )
-        //}
-        //)
     }
 }
 
@@ -59,41 +54,66 @@ class ViewComponent extends React.Component {
 
     renderItem = ({ item, index }) => {
 
-        if (item.USD.CHANGEPCT24HOUR < 0) {
+        if (item.DISPLAY.USD.CHANGEPCT24HOUR < 0) {
             return (
-                <View style={{ flex: 1, marginTop: 20, flexDirection: 'row', flexWrap: "wrap" }}>
-                    <Image style={{ width: 40, height: 40, marginHorizontal: 15, }} source={{ uri: 'https://www.cryptocompare.com' + item.USD.IMAGEURL }}></Image>
-                    <Text style={styles.text}>
-                        {accounting.formatMoney(item.USD.PRICE, "$", 2, ".", ",")}
-                    </Text>
-                    <Text style={[item.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
-                        {(item.USD.CHANGEPCT24HOUR < 0 ? item.USD.CHANGEPCT24HOUR : '+' + item.USD.CHANGEPCT24HOUR) + '%'}
-                    </Text>
+                <View style={{ flex: 1, marginTop: 20, flexDirection: 'row' }}>
                     <View>
-                    <Image style={{ width: 40, height: 40,borderWidth: 1 }} source={toparrow}>
-                    </Image>
+                        <Text>{item.CoinInfo.FullName}</Text>
+                    </View>
+                    <View>
+                        <Image
+                            style={{ width: 40, height: 40, marginHorizontal: 15, }}
+                            source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}></Image>
+                    </View>
+                    <View>
+                        <Text
+                            style={styles.text}>
+                            {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                        </Text>
+                    </View>
+                    <View>
+                        <Text style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
+                            {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%'}
+                        </Text>
+                    </View>
+                    <View>
+                        <Image style={{ width: 20, height: 20, transform: [{ rotate: '180deg' }], marginTop: 10 }} source={arrowdown}>
+                        </Image>
+                    </View>
                 </View>
-                </View>
-           
+
             )
 
         }
         else {
             return (
-                <View style={{ flex: 1, marginTop: 20, flexDirection: 'row', flexWrap: "wrap" }}>
-                    <Image style={{ width: 40, height: 40, marginHorizontal: 15, }} source={{ uri: 'https://www.cryptocompare.com' + item.USD.IMAGEURL }}></Image>
-                    <Text style={styles.text}>
-                        {accounting.formatMoney(item.USD.PRICE, "$", 2, ".", ",")}
-                    </Text>
-                    <Text style={[item.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
-                        {(item.USD.CHANGEPCT24HOUR < 0 ? item.USD.CHANGEPCT24HOUR : '+' + item.USD.CHANGEPCT24HOUR) + '%'}
-                    </Text>
-                    <View>
-                    <Image style={{ width: 40, height: 40, borderWidth: 1 }} source={toparrow}>
+                <View style={{ flex: 1, marginTop: 20, flexDirection: 'row'}}>
+                       <View>
+                        <Text>{item.CoinInfo.FullName}</Text>
+                    </View>
+                    <View >
+                    <Image
+                        style={{ width: 40, height: 40, marginHorizontal: 15, }}
+                        source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
                     </Image>
+                    </View>
+                   <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                   <Text style={styles.text}>
+                        {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                    </Text>
+                   </View>
+                    <View >
+                    <Text
+                        style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
+                        {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%' + " "}
+                    </Text>
+                    </View>
+                    <View>
+                        <Image style={{ width: 20, height: 20, marginTop: 10 }} source={arrowtop} >
+                        </Image>
+                    </View>
                 </View>
-                </View>
-              )
+            )
         }
 
     }
@@ -120,25 +140,24 @@ const styles = StyleSheet.create({
     slide1: {
         flex: 1,
     },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5'
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9'
-    },
     text: {
         color: '#fff',
         fontSize: 30,
         fontWeight: 'bold',
-        flex: 0.7,
-        letterSpacing: 2
+        letterSpacing: 1,
+        width: 190,
+        textAlign: 'center'
 
+    },
+    redText: {
+        color: "#FB0F03",
+        marginLeft: 20,
+        marginTop: 10
+    },
+    greenText: {
+        color: 'green',
+        marginLeft: 20,
+        marginTop: 10
     }
 })
 
