@@ -1,15 +1,15 @@
 import {createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Home from '../screens/home'
 import Score from '../screens/score'
-import PrefCrypto from '../screens/PrefCrypto'
+import Wallet from '../screens/Wallet'
 
 const MainNavigator = createBottomTabNavigator({
-     Home,
+     Wallet,
      Score,
-     PrefCrypto
+     Home
 },
 {
-    initialRouteName: 'Home'
+    initialRouteName: 'Wallet'
 });
 
 const App = createAppContainer(MainNavigator);

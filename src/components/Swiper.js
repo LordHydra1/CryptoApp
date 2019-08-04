@@ -64,7 +64,7 @@ class ViewComponent extends React.Component {
                             source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
                         </Image>
                     </View>
-                    <View style={{ flexDirection: 'column', flex: 0.5 }}>
+                    <View style={{ flexDirection: 'column', flex: 0.6 }}>
                         <Text
                             style={[styles.text, styles.negativeRate, { textAlign: 'center' }]}>
                             {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
