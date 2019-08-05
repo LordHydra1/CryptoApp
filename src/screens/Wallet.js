@@ -4,8 +4,6 @@ import { _fetchAll } from '../api/fetchSomething';
 import styles from '../utils/styles'
 import Swiper from '../components/Swiper'
 import accounting from 'accounting'
-import arrowtop from '../assets/icon/index'
-import LineChart from '../components/Charts'
 import Charts from '../components/Charts';
 
 
@@ -43,7 +41,7 @@ export default class PrefCrypto extends React.Component {
         <View style={styles.cardView}>
           <View style={{flexDirection: 'column', flex: 0.3}}>
             <View>
-              <Text style={{ marginLeft: 10, fontSize: 14, fontWeight: '600', marginTop: 5 }}>{item.CoinInfo.FullName}</Text>
+              <Text style={{ marginLeft: 10, fontSize: 14, fontWeight: '600', marginTop: 5,  }}>{item.CoinInfo.FullName}</Text>
               <Image style={{ width: 30, height: 30, borderRadius: 55, marginLeft: 11 }} source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}></Image>
             </View>
           </View>
@@ -54,10 +52,9 @@ export default class PrefCrypto extends React.Component {
               raw={item.RAW}
             />
               </View>  
-              <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1.3, textAlign: 'right', marginTop: 5, marginRight: 8 }}>{accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}</Text>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1.3, textAlign: 'right', marginTop: 15, marginRight: 8, color: item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? '#A11B0A' : '#3D9400'}}>
+                {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}</Text>
             </View>
-            <Text style={{ textAlign: 'right' }}>{item.DISPLAY.USD.HIGHDAY}</Text>
-            <Text style={{ textAlign: 'right' }}>{item.DISPLAY.USD.LOWDAY}</Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -93,60 +90,3 @@ export default class PrefCrypto extends React.Component {
     );
   }
 }
-
-
-
-
-
-
-
-/*------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------------------------- */
-
-// class RenderImages extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       isLoading: true,
-//       crypto: [],
-//     }
-//   }
-
-
-//   componentDidMount() {
-//     this._fetchData();
-//   }
-
-//   _fetchData() {
-//     const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC,EOS,BCH,XRP&tsyms=USD'
-//     return fetch(url)
-//       .then(response => response.json())
-//       .then(parsedJson => this.setState({
-//         isLoading: false,
-//         crypto: Object.values(parsedJson.DISPLAY)
-//       }, function () { console.log('FETCH DATA COMPONENT DID MOUNT', this.state.crypto) })
-//       )
-//       .catch(error => console.log(error))
-//   }
-
-
-//   render() {
-//     console.log('dentro il Render', this.state.crypto)
-//        return this.state.crypto.map((data) => {
-//           return <View>
-//                 <Image
-//                 key={data.id}
-//                 style={{ width: 40, height: 40 }}
-//                 source={{ uri: 'https://www.cryptocompare.com' + data.USD.IMAGEURL }}
-//                 >
-//               </Image>
-//               <Text>{data.USD.PRICE}</Text>
-//          </View>
-//        }
-
-
-//         )
-//       }
-// }

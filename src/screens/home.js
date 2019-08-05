@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View ,Image} from 'react-native'
 import Header from '../components/Header';
 
 export default class home extends Component {
@@ -23,7 +23,14 @@ export default class home extends Component {
           coinname={data.CoinInfo.FullName}
           coinshort={data.CoinInfo.Name}          
         /> 
-        <Text>{data.RAW.USD.PRICE}</Text>
+        <View style={{flex: 1, flexDirection:'row', marginTop: 35, marginLeft: 16}}>
+          <View style={{flexDirection:'column'}}>
+          <Image style={{width:30, height: 30}} source={{uri:'https://www.cryptocompare.com'+data.DISPLAY.USD.IMAGEURL}}></Image>
+          </View>
+          <View style={{marginLeft: 35}}>
+            <Text style={{fontSize: 25, letterSpacing:0}}>{data.DISPLAY.USD.PRICE}</Text>
+          </View>
+        </View>
       </View>
     )
   }
