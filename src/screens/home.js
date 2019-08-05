@@ -30,7 +30,6 @@ export default class Home extends React.Component {
 
 
   renderItem = ({ item, index }) => {
-    console.log(item)
     return (
    
       <TouchableOpacity>

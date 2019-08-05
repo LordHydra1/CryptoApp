@@ -6,6 +6,7 @@ import Swiper from '../components/Swiper'
 import accounting from 'accounting'
 import arrowtop from '../assets/icon/index'
 import LineChart from '../components/Charts'
+import Charts from '../components/Charts';
 
 
 export default class PrefCrypto extends React.Component {
@@ -30,9 +31,6 @@ export default class PrefCrypto extends React.Component {
 
 
   renderItem = ({ item, index }) => {
-    console.log('pippo', item.DISPLAY)
-
-
     return (
 
       <TouchableOpacity>
@@ -45,6 +43,10 @@ export default class PrefCrypto extends React.Component {
             </View>
           </View>
           <View style={{flex:1}}>
+           <Charts
+            randomprop={this.state.fullCrypto}
+            raw={item.RAW}
+            /> 
           </View>
           <View style={{ flexDirection: 'column', flex: 1}}>
             <View style={{flexDirection: 'row'}}>

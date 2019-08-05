@@ -29,9 +29,6 @@ export default class PrefCrypto extends React.Component {
 
 
   renderItem = ({ item, index }) => {
-    console.log('pippo', item.DISPLAY)
-
-
     return (
 
       <TouchableOpacity>

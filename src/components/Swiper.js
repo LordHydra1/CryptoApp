@@ -25,7 +25,6 @@ export default class SwiperComponent extends Component {
     }
 
     render() {
-        console.log('props', this.props.randomprop);
         return (
             <LinearGradient colors={['#ffffff', '#f6f6f6', '#ededed']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1, marginVertical: 10, marginHorizontal: 10, borderRadius: 10 }}>
                 <Swiper style={styles.wrapper}
@@ -114,8 +113,6 @@ class ViewComponent extends React.Component {
 
     }
     render() {
-        console.log('ciaoioo', this.props.randomprop)
-
         return (
 
             <View style={styles.slide1}
