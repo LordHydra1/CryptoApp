@@ -1,4 +1,4 @@
-import {createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import {createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import Home from '../screens/home'
 import Score from '../screens/score'
 import Wallet from '../screens/Wallet'
