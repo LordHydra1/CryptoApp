@@ -28,7 +28,6 @@ class Charts extends Component {
             </Defs>
         )
         console.log('CIAO CHARTS 1', this.props.raw)
-        const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
         const detail = [this.props.raw.USD.OPENHOUR, this.props.raw.USD.LOWHOUR, this.props.raw.USD.HIGHHOUR,this.props.raw.USD.PRICE ]
         return (
             // this.props.raw &&
@@ -37,7 +36,7 @@ class Charts extends Component {
             <View>
 
                 <LineChart
-                    style={{ height: 60, borderWidth:1}}
+                    style={{ height: 60}}
                     data={detail}
                     contentInset={{ top: 50, bottom: 50 }}
                     curve={shape.curveNatural}

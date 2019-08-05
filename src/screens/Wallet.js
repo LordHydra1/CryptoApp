@@ -41,7 +41,7 @@ export default class PrefCrypto extends React.Component {
       <TouchableOpacity 
       onPress={ () => this.actionOnRow(item)}>
         <View style={styles.cardView}>
-          <View style={{flexDirection: 'column', borderWidth:1, flex: 0.3}}>
+          <View style={{flexDirection: 'column', flex: 0.3}}>
             <View>
               <Text style={{ marginLeft: 10, fontSize: 14, fontWeight: '600', marginTop: 5 }}>{item.CoinInfo.FullName}</Text>
               <Image style={{ width: 30, height: 30, borderRadius: 55, marginLeft: 11 }} source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}></Image>

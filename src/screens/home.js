@@ -20,7 +20,8 @@ export default class home extends Component {
     return (
       <View>
         <Header
-          coininfo={data.RAW.USD.PRICE}
+          coinname={data.CoinInfo.FullName}
+          coinshort={data.CoinInfo.Name}          
         /> 
         <Text>{data.RAW.USD.PRICE}</Text>
       </View>
