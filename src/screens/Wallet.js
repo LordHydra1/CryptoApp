@@ -4,8 +4,6 @@ import { _fetchAll } from '../api/fetchSomething';
 import styles from '../utils/styles'
 import Swiper from '../components/Swiper'
 import accounting from 'accounting'
-import arrowtop from '../assets/icon/index'
-import LineChart from '../components/Charts'
 import Charts from '../components/Charts';
 
 
@@ -32,13 +30,13 @@ export default class PrefCrypto extends React.Component {
     this.props.navigation.navigate('Home', {
       Clicked: item
     })
-        console.log('Selected Item :',item);
- }
+    console.log('Selected Item :', item);
+  }
 
   renderItem = ({ item, index }) => {
     return (
 
-      <TouchableOpacity 
+       <TouchableOpacity 
       onPress={ () => this.actionOnRow(item)}>
         <View style={styles.cardView}>
           <View style={{flexDirection: 'column', flex: 0.3}}>
@@ -54,13 +52,20 @@ export default class PrefCrypto extends React.Component {
               raw={item.RAW}
             />
               </View>  
-              <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1.3, textAlign: 'right', marginTop: 5, marginRight: 8 }}>{accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}</Text>
-            </View>
+              </View>
+
+              <View style={{flex:1}}>
+              <Text style={{ fontWeight: 'bold', fontSize: 20, letterSpacing: 1.3, textAlign: 'right', marginTop: 5, marginRight: 8 }}>
+                {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}</Text>
+            <Text style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText, styles.rateText]}>
+                {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%'}
+              </Text>
             <Text style={{ textAlign: 'right' }}>{item.DISPLAY.USD.HIGHDAY}</Text>
             <Text style={{ textAlign: 'right' }}>{item.DISPLAY.USD.LOWDAY}</Text>
+            </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> 
 
     )
   }

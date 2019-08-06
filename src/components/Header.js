@@ -18,7 +18,7 @@ import { withNavigation } from 'react-navigation';
             <View>
                 <View>
                 <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                    <Image style={{width: 30, height: 30, opacity: 0.3}} source={back}>
+                    <Image style={{width: 30, height: 30}} source={back}>
                     </Image>
                     </TouchableOpacity>
                     <Text>{this.props.coinname}</Text>

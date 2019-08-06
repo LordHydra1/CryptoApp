@@ -36,7 +36,7 @@ class Charts extends Component {
             <View>
 
                 <LineChart
-                    style={{ height: 60}}
+                    style={{ height: 60, borderWidth:1 }}
                     data={detail}
                     contentInset={{ top: 50, bottom: 50 }}
                     curve={shape.curveNatural}
