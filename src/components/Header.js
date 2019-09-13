@@ -32,7 +32,6 @@ class Header extends Component {
                 <Text style={{opacity: 0.2, color: 'red', fontSize: 13}} >{this.props.coinshort}</Text>
                 </View>
                 </View>
-                
             </View>   
      )
     }

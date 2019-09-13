@@ -27,8 +27,7 @@ class Charts extends Component {
                 </LinearGradient>
             </Defs>
         )
-        console.log('CIAO CHARTS 1', this.props.raw)
-        const detail = [this.props.raw.USD.OPENHOUR, this.props.raw.USD.LOWHOUR, this.props.raw.USD.HIGHHOUR,this.props.raw.USD.PRICE ]
+        const detail = [ this.props.raw.USD.OPEN24HOUR, this.props.raw.USD.HIGH24HOUR, this.props.raw.USD.PRICE ]
         return (
             // this.props.raw &&
             // this.props.raw.map((item, index) => {
@@ -36,7 +35,7 @@ class Charts extends Component {
             <View>
 
                 <LineChart
-                    style={{ height: 60, borderWidth:1 }}
+                    style={{ height: 60}}
                     data={detail}
                     contentInset={{ top: 50, bottom: 50 }}
                     curve={shape.curveNatural}

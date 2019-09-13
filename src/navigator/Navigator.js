@@ -1,7 +1,7 @@
 import {createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import Home from '../screens/home'
+import Home from '../screens/home/home'
 import Score from '../screens/score'
-import Wallet from '../screens/Wallet'
+import Wallet from '../screens/cryptoList/Wallet'
 
 const MainNavigator = createBottomTabNavigator({
      Wallet,

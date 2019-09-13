@@ -9,3 +9,4 @@ export const API_FOOTBALL_HOST = 'api-football-v1.p.rapidapi.com';
 export const START_FOOTBALL_URL = 'https://api-football-v1.p.rapidapi.com/v2/fixtures/';
 export const API_URL_IMAGES = 'https://api.unsplash.com/photos?page=1';
 export const API_KEY_CRYPTO = '6000c9531ddf80c3bd724df7d7fe6e560fea9fc9b36a833adc3806adb1e261bf'
+export const APY_KEY_BOMBA ='3e0f6120-f5fb-4aa0-ab8c-ef9bdd93c118'
