@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react'
-import { Text, View, Image,TouchableOpacity } from 'react-native'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
 import Header from '../../components/Header';
 import accounting from 'accounting';
 import { _dynamicFetch } from '../../api/fetchSomething';
 import HomeCharts from '../../components/HomeCharts'
-import Grafico from '../../components/GraficoHome'
+import Button from '../../components/Button'
+import styles from '../../utils/styles'
 
 export default class home extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class home extends Component {
   }
 
   componentDidMount = async () => {
-   const responseJson =  await _dynamicFetch()   
+    const responseJson = await _dynamicFetch()
     this.setState({
       isLoading: false,
       prova: responseJson.Data.Data
@@ -44,34 +45,42 @@ export default class home extends Component {
           coinname={data.CoinInfo.FullName}
           coinshort={data.CoinInfo.Name}
         />
-        <View style={{ flexDirection: 'row', marginTop: 20}}>
-          <View style={{ flex: 0.2, flexDirection:'column', marginTop:10 }}>
+        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+          <View style={{ flex: 0.2, flexDirection: 'column', marginTop: 10 }}>
             <Image style={{ width: 30, height: 30, borderRadius: 55, marginLeft: 20 }} source={{ uri: 'https://www.cryptocompare.com' + data.DISPLAY.USD.IMAGEURL }}></Image>
           </View>
-          <View style={{ flex: 0.5 , flexDirection:'column'}}>
-            <Text style={{ fontSize: 37}}>{accounting.formatMoney(data.DISPLAY.USD.PRICE, "$", 2, ".", ",")}</Text>
+          <View style={{ flex: 0.5, flexDirection: 'column' }}>
+            <Text style={{ fontSize: 37 }}>
+              {accounting.formatMoney(data.DISPLAY.USD.PRICE, "$", 2, " ", ".")}
+            </Text>
+            <Text style={[data.RAW.USD.CHANGE24HOUR < 0 ? styles.redText : styles.greenText,{fontSize:12, marginLeft:8}]}>
+              {accounting.formatMoney(data.DISPLAY.USD.CHANGE24HOUR, "$ ", 2, "", ".") + " Last 24 Hour"}
+            </Text>
           </View>
+        </View>
+        <View
+          style={{flexDirection:'row-reverse', marginTop: 15, marginBottom:20}}>
+          <TouchableOpacity>
+            <View style={{
+              borderRadius: 20, borderColor: '#DCDCDC',
+              borderWidth: 1, width: 100, height: 40, backgroundColor: 'white',
+              justifyContent: 'center', alignItems: 'center',
+              marginRight: 40
+            }}>
+              <Text style={{ color: 'black', fontSize: 14, fontWeight: 'bold' }}>Sell</Text>
+            </View>
+          </TouchableOpacity>
+          <Button />
 
         </View>
-         <View
-          style={{ flex: 1, flexDirection: 'row-reverse', color:'white',marginBottom: 40}}>
-          <TouchableOpacity>
-          <View style={{borderRadius:20,borderColor:'orange', borderWidth:1, width:120, height:40, backgroundColor: '#F2682D',justifyContent:'center',alignItems:'center'}}>
-          <View>
-            <Text style={{color:'white', fontSize:14, fontWeight:'bold'}}>Buy</Text>
-            </View> 
-          </View>
-          </TouchableOpacity>
-          <View style={{borderRadius:20,borderColor:'grey', borderWidth:1, width:120, height:40, backgroundColor: 'white'}}>
-            <Text>Sell</Text>
-          </View>
-        </View> 
-        <View>
-        <HomeCharts
-         moneys={moneys}/>
-          </View>
 
-               
+
+        <View>
+          <HomeCharts
+            moneys={moneys} />
+        </View>
+
+
 
       </View>
     )
