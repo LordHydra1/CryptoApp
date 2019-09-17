@@ -7,6 +7,7 @@ import { _dynamicFetch } from '../../api/fetchSomething';
 import HomeCharts from '../../components/HomeCharts'
 import Button from '../../components/Button'
 import styles from '../../utils/styles'
+import Color from '../../common/Color'
 
 export default class home extends Component {
   constructor(props) {
@@ -31,12 +32,12 @@ export default class home extends Component {
 
 
   render() {
-    const data = this.props.navigation.state.params.Clicked;
     // if(this.props.navigation.state.params.Clicked.id == this.state.prova. ){
 
     // }else{
     //   return false
     // }
+    const data = this.props.navigation.state.params.Clicked;
     moneys = this.state.prova.map((money) => money.high);
 
     return (
@@ -80,6 +81,7 @@ export default class home extends Component {
             moneys={moneys} />
         </View>
 
+        <Color/>
 
 
       </View>

@@ -47,8 +47,8 @@ class HomeCharts extends Component {
 
         if (this.state.data) {
 
-            moneys = this.state.data.map((money) => money.high);
-            console.log('ciaoooooooo', moneys)
+            moneys = this.state.data.map((money) => money.low);
+            console.log(moneys)
             return (
                 // this.props.raw &&
                 // this.props.raw.map((item, index) => {
