@@ -19,7 +19,7 @@ class Header extends Component {
                 <View style={{ flexDirection: 'column' }}>
                     <TouchableOpacity
                         style={{width: 40 }}
-                        onPress={() => this.props.navigation.goBack()}>
+                        onPress={() => this.props.navigation.goBack(null)}>
                         <Image style={{ width: 30, height: 30 }} source={back}>
                         </Image>
                     </TouchableOpacity>

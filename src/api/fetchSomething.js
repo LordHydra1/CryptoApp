@@ -34,9 +34,9 @@ export async function _fetchAll() {
 }
 
 
-export async function _dynamicFetch() {
-  let moneta = 'BTC'
-  return fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${moneta}&tsym=USD&limit=10`)
-    .then((response) => response.json())
-    .catch((error) => { console.error(error) })
-}
+// export async function _dynamicFetch() {
+//   let moneta = 'BTC'
+//   return fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${moneta}&tsym=USD&limit=10`)
+//     .then((response) => response.json())
+//     .catch((error) => { console.error(error) })
+// }

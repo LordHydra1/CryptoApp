@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import { Text, View, Image, TouchableOpacity } from 'react-native'
 import Header from '../../components/Header';
 import accounting from 'accounting';
-import { _dynamicFetch } from '../../api/fetchSomething';
 import HomeCharts from '../../components/HomeCharts'
 import Button from '../../components/Button'
 import styles from '../../utils/styles'
 import Color from '../../common/Color'
+import Images from '../../components/Images'
 
 export default class home extends Component {
   constructor(props) {
@@ -28,6 +28,13 @@ export default class home extends Component {
   }
 
 
+  //    _dynamicFetch = () => {
+  //   let moneta = ['BTC','ETH','LTC']
+  //   return fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${moneta[0]}&tsym=USD&limit=10`)
+  //     .then((response) => response.json())
+  //     .catch((error) => { console.error(error) })
+  // }
+  
 
 
 
@@ -37,8 +44,18 @@ export default class home extends Component {
     // }else{
     //   return false
     // }
+    _dynamicFetch = () => {
+      console.log('this.props.navigation.state.params.Clicked', this.props.navigation.state.params.Clicked.CoinInfo.Name)
+      const data = this.props.navigation.state.params.Clicked;
+      return fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${data.CoinInfo.Name}&tsym=USD&limit=10`)
+        .then((response) => response.json(console.log('dynamicccccccccccccccccccccc', this.props.navigation.state.params.Clicked)))
+        .catch((error) => { console.error(error) })
+    }
+
     const data = this.props.navigation.state.params.Clicked;
     moneys = this.state.prova.map((money) => money.high);
+
+  
 
     return (
       <View>
@@ -48,7 +65,8 @@ export default class home extends Component {
         />
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
           <View style={{ flex: 0.2, flexDirection: 'column', marginTop: 10 }}>
-            <Image style={{ width: 30, height: 30, borderRadius: 55, marginLeft: 20 }} source={{ uri: 'https://www.cryptocompare.com' + data.DISPLAY.USD.IMAGEURL }}></Image>
+            <Images
+            data={data.DISPLAY}></Images>
           </View>
           <View style={{ flex: 0.5, flexDirection: 'column' }}>
             <Text style={{ fontSize: 37 }}>
@@ -74,10 +92,9 @@ export default class home extends Component {
           <Button />
 
         </View>
-
-
-        <View>
+       <View>
           <HomeCharts
+            prova = {this.props.navigation.state.params.Clicked}
             moneys={moneys} />
         </View>
 

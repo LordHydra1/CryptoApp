@@ -4,7 +4,6 @@ import { View, ActivityIndicator } from 'react-native'
 import * as shape from 'd3-shape'
 import { LineChart } from 'react-native-svg-charts'
 import { Defs, LinearGradient, Stop} from 'react-native-svg'
-import { _dynamicFetch } from '../api/fetchSomething'
 
 
 class HomeCharts extends Component {
@@ -23,6 +22,14 @@ class HomeCharts extends Component {
             isLoading: false,
             data: responseJson.Data.Data
         }, function () { console.log(responseJson.Data.Data, this.state.data) })
+    }
+
+     _dynamicFetch = () => {
+      console.log('this.props.navigation.state.params.Clicked', this.props.navigation.state.params.Clicked.CoinInfo.Name)
+      const data = this.props.navigation.state.params.Clicked;
+      return fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${data.CoinInfo.Name}&tsym=USD&limit=10`)
+        .then((response) => response.json(console.log('dynamicccccccccccccccccccccc', typeof(data.CoinInfo.Name))))
+        .catch((error) => { console.error(error) })
     }
 
     render() {
