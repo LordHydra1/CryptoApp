@@ -36,7 +36,6 @@ export default class Color extends Component {
     if(this.state.data){
     CoinName = this.state.data.map((text) => text.CoinInfo)
     names = CoinName.map((name) => name.Name)
-    console.log('print result .name',name)
     if(names[0] === 'BTC'){
         return (
             <View>

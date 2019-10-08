@@ -5,8 +5,7 @@ import { _fetchCrypto } from '../api/fetchSomething'
 import LinearGradient from 'react-native-linear-gradient';
 import accounting from 'accounting'
 import { arrowtop, arrowdown } from '../assets/icon/index'
-import stylesa from '../utils/styles'
-
+import Images from '../components/Images'
 
 export default class SwiperComponent extends Component {
 
@@ -26,7 +25,7 @@ export default class SwiperComponent extends Component {
 
     render() {
         return (
-            <LinearGradient colors={['#ffffff', '#f6f6f6', '#ededed']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1, marginVertical: 10, marginHorizontal: 10, borderRadius: 10 }}>
+            <LinearGradient colors={['#ffc3a0', '#FFAFBD']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1, marginVertical: 10, marginHorizontal: 10, borderRadius: 10 }}>
                 <Swiper style={styles.wrapper}
                     showsButtons={false}
                     randomprop={this.props.randomprop}
@@ -55,28 +54,34 @@ class ViewComponent extends React.Component {
 
         if (item.DISPLAY.USD.CHANGEPCT24HOUR < 0) {
             return (
-                <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginTop: 25, justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ flexDirection: 'column', flex: 0.2 }}>
-                        <Text>{item.CoinInfo.FullName}</Text>
-                        <Image
-                            style={{ width: 40, height: 40 }}
-                            source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
-                        </Image>
-                    </View>
-                    <View style={{ flexDirection: 'column', flex: 0.6 }}>
-                        <Text
-                            style={[styles.text, styles.negativeRate, { textAlign: 'center' }]}>
-                            {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                <View style={{ flex: 1, flexDirection: 'column', marginHorizontal: 10, marginTop: 25, justifyContent: 'center', alignItems: 'center', }}>
+                    <View style={{ flexDirection: 'row', textAlign: 'left'}}>
+                        <Text style={{ marginLeft: 13, marginBottom: 5, fontSize: 20, fontWeight: 'bold' }}>
+                            {item.CoinInfo.FullName == 'Ethereum Classic' ? 'Eth Classic' : item.CoinInfo.FullName}
                         </Text>
                     </View>
-                    <View style={{ flexDirection: 'column', flex: 0.2, justifyContent: 'flex-start' }}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText]}>
-                                {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%'}
-                            </Text>
-                            <Image style={{ width: 15, height: 15, transform: [{ rotate: '180deg' }], marginTop: 35 }} source={arrowdown}>
-                            </Image>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'column', flex: 0.2, marginTop: 25}}>
+                            <Images
+                                data={item.DISPLAY}
+                            />
                         </View>
+                                <View style={{ flexDirection: 'column', flex: 0.6 }}>
+                                    <Text style={[styles.text, styles.negativeRate]}>
+                                        {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                                    </Text>
+                                </View>
+                            <View style={{ flexDirection: 'column', flex: 0.2, marginTop: 6}}>
+                                <View style={{ flexDirection: 'row'}}>
+                                <Text
+                                        style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText]}>
+                                        {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%' + " "}
+                                    </Text>
+                                    <Image style={{ width: 12, height: 12, transform: [{ rotate: '180deg' }], marginTop: 35 }} source={arrowdown}>
+                                    </Image>
+                                </View>
+                               
+                             </View>
                     </View>
                 </View>
             )
@@ -84,28 +89,34 @@ class ViewComponent extends React.Component {
         }
         else {
             return (
-                <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, marginTop: 25, justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ flexDirection: 'column', flex: 0.2}}>
-                        <Text>{item.CoinInfo.FullName}</Text>
-                        <Image
-                            style={{ width: 40, height: 40 }}
-                            source={{ uri: 'https://www.cryptocompare.com' + item.DISPLAY.USD.IMAGEURL }}>
-                        </Image>
-                    </View>
-                    <View style={{ flexDirection: 'column', flex: 0.6}}>
-                        <Text style={[styles.text, styles.positiveRate]}>
-                            {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                <View style={{ flex: 1, flexDirection: 'column', marginHorizontal: 10, marginTop: 25, justifyContent: 'center', alignItems: 'center', }}>
+                    <View style={{ flexDirection: 'row', textAlign: 'left'}}>
+                        <Text style={{ marginLeft: 13, marginBottom: 5, fontSize: 20, fontWeight: 'bold' }}>
+                            {item.CoinInfo.FullName == 'Ethereum Classic' ? 'Eth Classic' : item.CoinInfo.FullName}
                         </Text>
                     </View>
-                    <View style={{ flexDirection: 'column', flex: 0.2, justifyContent: 'flex-start'}}>
-                        <View style={{ flexDirection: 'row', marginRight:10 }}>
-                            <Text
-                                style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText]}>
-                                {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%' + " "}
-                            </Text>
-                            <Image style={{ width: 15, height: 15, marginTop: 30, right:3}} source={arrowtop} >
-                            </Image>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'column', flex: 0.2, marginTop: 25}}>
+                            <Images
+                                data={item.DISPLAY}
+                            />
                         </View>
+                                <View style={{ flexDirection: 'column', flex: 0.6 }}>
+                                    <Text style={[styles.text, styles.positiveRate]}>
+                                        {accounting.formatMoney(item.DISPLAY.USD.PRICE, "$", 2, ".", ",")}
+                                    </Text>
+                                </View>
+                            <View style={{ flexDirection: 'column', flex: 0.2, marginTop: 6}}>
+                                <View style={{ flexDirection: 'row'}}>
+                                <Text
+                                        style={[item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? styles.redText : styles.greenText]}>
+                                        {(item.DISPLAY.USD.CHANGEPCT24HOUR < 0 ? item.DISPLAY.USD.CHANGEPCT24HOUR : '+' + item.DISPLAY.USD.CHANGEPCT24HOUR) + '%' + " "}
+                                    </Text>
+                                    <Image style={{ width: 12, height: 12, marginTop: 30, right: 2}} source={arrowtop} >
+                                    </Image>
+                                </View>
+                               
+                             </View>
                     </View>
                 </View>
             )
@@ -114,7 +125,6 @@ class ViewComponent extends React.Component {
     }
     render() {
         return (
-
             <View style={styles.slide1}
                 randomprop={this.props.randomprop}>
                 <FlatList
@@ -139,7 +149,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 1,
         marginTop: 20
-
     },
     redText: {
         color: "#FB0F03",
@@ -154,13 +163,14 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         letterSpacing: 1,
-        textAlign:'center'
+        textAlign: 'center'
     },
     negativeRate: {
         color: '#A11B0A',
         fontSize: 30,
         fontWeight: 'bold',
-        letterSpacing: 1
+        letterSpacing: 1,
+        textAlign: 'center'
     }
 
 })

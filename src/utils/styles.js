@@ -6,11 +6,11 @@ export default StyleSheet.create({
 
     HomeView: {
         flex: 0.5,
-        backgroundColor: '#E7E7E8'
+        backgroundColor: '#eef2f3'
     },
     FlatList: {
         flex: 0.2,
-        backgroundColor: '#E7E7E8'
+        backgroundColor: '#eef2f3'
     },
     greenText: {
         color: '#3D9400',
@@ -28,24 +28,21 @@ export default StyleSheet.create({
         marginRight: 10
     },
     cardView: {
-        borderWidth: 1,
         flex:1,
-        borderColor: 'white',
         marginVertical: 5,
         marginHorizontal: 10,
         borderRadius: 6,
         height: 100,
         flexDirection: 'row',
-        backgroundColor: '#FAFAFA',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 1.00,
+        // backgroundColor: '#FAFAFA',
+        // shadowColor: "#000",
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 1,
+        // },
+        // shadowOpacity: 0.18,
+        // shadowRadius: 1.00,
 
-        elevation: 1,
     },
   
 })

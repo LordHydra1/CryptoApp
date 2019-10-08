@@ -47,7 +47,7 @@ class HomeCharts extends Component {
 
         if (this.state.data) {
 
-            moneys = this.state.data.map((money) => money.low);
+            moneys = this.state.data.map((money) => money.high);
             console.log(moneys)
             return (
                 // this.props.raw &&
@@ -57,7 +57,7 @@ class HomeCharts extends Component {
                 <View>
 
                     <LineChart
-                        style={{ height: 60 }}
+                        style={{ height: 60, marginHorizontal: 15 }}
                         data={moneys}
                         contentInset={{ top: 50, bottom: 50 }} 
                         curve={shape.curveNatural}
