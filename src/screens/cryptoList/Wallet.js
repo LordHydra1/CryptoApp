@@ -20,19 +20,31 @@ export default class PrefCrypto extends React.Component {
     }
   }
   componentDidMount() {
-    // this.timer = setInterval(()=> this.pippo(), 2000)
+    const {_fetchAll, navigation} = this.props
+    _fetchAll();
+    this.willFocusListener = navigation.addListener('willFocus'),
+    () => {
+      _fetchAll()
+    }
+
     _fetchAll().then((responseJson) => {
       this.setState({
         isLoading: false,
         fullCrypto: responseJson.Data
       }, function () { })
     })
+
+
+  }
+
+  componentWillUnmount(){
+    this.willFocusListener.remove()
   }
   actionOnRow(item) {
     this.props.navigation.navigate('Home', {
       Clicked: item
     })
-    console.log('Selected Item :', item);
+    //console.log('Selected Item :', item);
   }
 
   renderItem = ({ item, index }) => {

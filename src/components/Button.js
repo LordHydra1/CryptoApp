@@ -13,7 +13,6 @@ class Button extends Component {
     }
 
     handleConsole=() => {
-        console.log('duiduid')
     }
 
     render() {

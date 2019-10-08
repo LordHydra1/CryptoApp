@@ -21,9 +21,19 @@ class HomeCharts extends Component {
         this.setState({
             isLoading: false,
             data: responseJson.Data.Data
-        }, function () { console.log(responseJson.Data.Data, this.state.data) })
-    }
+        }, function () {})
 
+
+        this.willFocusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            () => {
+              this.props._dynamicFetch();
+            });
+    }
+    
+    componentWillUnmount() {
+        this.willFocusSubscription.remove();
+      }
      _dynamicFetch = () => {
       console.log('this.props.navigation.state.params.Clicked', this.props.navigation.state.params.Clicked.CoinInfo.Name)
       const data = this.props.navigation.state.params.Clicked;
@@ -55,7 +65,6 @@ class HomeCharts extends Component {
         if (this.state.data) {
 
             moneys = this.state.data.map((money) => money.high);
-            console.log(moneys)
             return (
                 // this.props.raw &&
                 // this.props.raw.map((item, index) => {

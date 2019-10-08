@@ -34,7 +34,7 @@ export default class home extends Component {
   //     .then((response) => response.json())
   //     .catch((error) => { console.error(error) })
   // }
-  
+
 
 
 
@@ -45,17 +45,16 @@ export default class home extends Component {
     //   return false
     // }
     _dynamicFetch = () => {
-      console.log('this.props.navigation.state.params.Clicked', this.props.navigation.state.params.Clicked.CoinInfo.Name)
       const data = this.props.navigation.state.params.Clicked;
       return fetch(`https://min-api.cryptocompare.com/data/v2/histoday?fsym=${data.CoinInfo.Name}&tsym=USD&limit=10`)
-        .then((response) => response.json(console.log('dynamicccccccccccccccccccccc', this.props.navigation.state.params.Clicked)))
+        .then((response) => response.json())
         .catch((error) => { console.error(error) })
     }
 
     const data = this.props.navigation.state.params.Clicked;
     moneys = this.state.prova.map((money) => money.high);
 
-  
+
 
     return (
       <View>
@@ -66,19 +65,19 @@ export default class home extends Component {
         <View style={{ flexDirection: 'row', marginTop: 20 }}>
           <View style={{ flex: 0.2, flexDirection: 'column', marginTop: 10 }}>
             <Images
-            data={data.DISPLAY}></Images>
+              data={data.DISPLAY}></Images>
           </View>
           <View style={{ flex: 0.5, flexDirection: 'column' }}>
             <Text style={{ fontSize: 37 }}>
               {accounting.formatMoney(data.DISPLAY.USD.PRICE, "$", 2, " ", ".")}
             </Text>
-            <Text style={[data.RAW.USD.CHANGE24HOUR < 0 ? styles.redText : styles.greenText,{fontSize:12, marginLeft:8}]}>
+            <Text style={[data.RAW.USD.CHANGE24HOUR < 0 ? styles.redText : styles.greenText, { fontSize: 12, marginLeft: 8 }]}>
               {accounting.formatMoney(data.DISPLAY.USD.CHANGE24HOUR, "$ ", 2, "", ".") + " Last 24 Hour"}
             </Text>
           </View>
         </View>
         <View
-          style={{flexDirection:'row-reverse', marginTop: 15, marginBottom:20}}>
+          style={{ flexDirection: 'row-reverse', marginTop: 15, marginBottom: 20 }}>
           <TouchableOpacity>
             <View style={{
               borderRadius: 20, borderColor: '#DCDCDC',
@@ -92,13 +91,13 @@ export default class home extends Component {
           <Button />
 
         </View>
-       <View>
+        <View>
           <HomeCharts
-            prova = {this.props.navigation.state.params.Clicked}
+            prova={this.props.navigation.state.params.Clicked}
             moneys={moneys} />
         </View>
 
-        <Color/>
+        <Color />
 
 
       </View>

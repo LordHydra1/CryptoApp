@@ -28,8 +28,6 @@ export class Images extends Component {
     render() {
 
         const { data } = this.props
-        console.log(data)
-
         if (data.USD.IMAGEURL == '/media/19633/btc.png') {
             return (
                 <View>

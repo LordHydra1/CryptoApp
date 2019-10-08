@@ -22,7 +22,7 @@ class Grafico extends Component {
         this.setState({
             isLoading: false,
             data: responseJson.Data.Data
-        }, function () { console.log(responseJson.Data.Data, this.state.data) })
+        }, function () {  })
     }
 
     render() {
@@ -57,7 +57,7 @@ class Grafico extends Component {
                 <G
                     x={ x(5) - (75 / 2) }
                     key={ 'tooltip' }
-                    onPress={ () => console.log('tooltip clicked') }
+                    onPress={ () => ''}
                 >
                     <G y={ 50 }>
                         <Rect
@@ -97,7 +97,6 @@ class Grafico extends Component {
             )
 
             moneys = this.state.data.map((money) => money.high);
-            console.log('ciaoooooooo', moneys)
             return (
                 // this.props.raw &&
                 // this.props.raw.map((item, index) => {

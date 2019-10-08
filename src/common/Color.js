@@ -20,7 +20,7 @@ export default class Color extends Component {
             this.setState({
               isLoading: false,
               data: responseJson.Data
-            }, function () { /*console.log('TEST API', this.state.data)*/ })
+            }, function () {})
           })
     }
 
