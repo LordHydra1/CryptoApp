@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator } from 'react-native'
 // // import { LineChart } from 'react-native-chart-kit'
 import * as shape from 'd3-shape'
-import { LineChart } from 'react-native-svg-charts'
+import { LineChart, Grid} from 'react-native-svg-charts'
 import { Defs, LinearGradient, Stop} from 'react-native-svg'
 
 
@@ -64,7 +64,7 @@ class HomeCharts extends Component {
 
         if (this.state.data) {
 
-            moneys = this.state.data.map((money) => money.high);
+            moneys = this.state.data.map((money) => money.low);
             return (
                 // this.props.raw &&
                 // this.props.raw.map((item, index) => {
@@ -75,7 +75,7 @@ class HomeCharts extends Component {
                     <LineChart
                         style={{ height: 60, marginHorizontal: 15 }}
                         data={moneys}
-                        contentInset={{ top: 50, bottom: 50 }} 
+                        contentInset={{ top: 10, bottom: 10 }} 
                         curve={shape.curveNatural}
                         svg={{
                             strokeWidth: 2,
